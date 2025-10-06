@@ -19,6 +19,7 @@
       justify-content: center;
       height: 100vh;
       text-align: center;
+      transition: all 0.3s ease;
     }
 
     .card {
@@ -41,10 +42,10 @@
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      background: url('https://avatars.githubusercontent.com/u/9919?s=200&v=4') no-repeat center/cover;
+      background: url('abdou.png') no-repeat center/cover;
       margin: 0 auto 15px;
       border: 3px solid #0a84ff;
-      box-shadow: 0 0 20px #0a84ff33;
+      box-shadow: 0 0 20px #0a84ff55;
     }
 
     h2 {
@@ -83,21 +84,81 @@
       font-size: 0.8em;
       color: #777;
     }
+
+    select {
+      background: #0a84ff;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 15px;
+      font-weight: 600;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    #about {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #ccc;
+      background: rgba(255,255,255,0.05);
+      padding: 10px;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
 
   <div class="card">
     <div class="avatar"></div>
-    <h2>Abdellvh Ben</h2>
-    <p>Choisissez une méthode — je réponds vite.</p>
+    <h2 id="name">Abdellvh Ben</h2>
+    <p id="subtitle">Choisissez une méthode — je réponds vite.</p>
 
     <a href="mailto:abdellahbensalem59@gmail.com">📧 Email</a>
     <a href="https://wa.me/213660922837">💬 WhatsApp</a>
     <a href="https://t.me/abdellahbensalem">📨 Telegram</a>
+
+    <select id="lang">
+      <option value="fr">Français</option>
+      <option value="en">English</option>
+      <option value="ar">العربية</option>
+    </select>
+
+    <div id="about">
+      <strong>À propos de moi :</strong><br>
+      Je suis <b>Abdellah Bensalem</b>, étudiant en informatique à l’USTHB, spécialisé en base de données,
+      développeur web et coach sportif (musculation). Passionné et professionnel.
+    </div>
   </div>
 
   <footer>© 2025 Abdellvh Ben — Tous droits réservés</footer>
 
+  <script>
+    const langSelect = document.getElementById('lang');
+    const subtitle = document.getElementById('subtitle');
+    const about = document.getElementById('about');
+
+    const translations = {
+      fr: {
+        subtitle: "Choisissez une méthode — je réponds vite.",
+        about: "Je suis <b>Abdellah Bensalem</b>, étudiant en informatique à l’USTHB, spécialisé en base de données, développeur web et coach sportif (musculation). Passionné et professionnel."
+      },
+      en: {
+        subtitle: "Choose a contact method — I reply quickly.",
+        about: "I’m <b>Abdellah Bensalem</b>, a computer science student at USTHB, specialized in databases, web developer, and fitness coach. Passionate and professional."
+      },
+      ar: {
+        subtitle: "اختر طريقة للتواصل — أجيب بسرعة.",
+        about: "أنا <b>عبد الله بن سالم</b>، طالب في الإعلام الآلي بجامعة USTHB، مختص في قواعد البيانات، مطور ويب ومدرب كمال أجسام محترف."
+      }
+    };
+
+    langSelect.addEventListener('change', () => {
+      const l = langSelect.value;
+      subtitle.innerHTML = translations[l].subtitle;
+      about.innerHTML = "<strong>À propos de moi :</strong><br>" + translations[l].about;
+    });
+  </script>
+
 </body>
 </html>
+
